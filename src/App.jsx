@@ -8,11 +8,13 @@ import Experience from './sections/Experience'
 import Testimonials from './sections/Testimonials'
 import Contact from './sections/Contact'
 import Footer from './sections/Footer';
+import ParticlesBackground from './components/ParticlesBackground'
 
 
 function App() {
   return (
-    <div>
+    <div className='relative gradient text-white'>
+      <ParticlesBackground/>
       <Navbar/>
       <Home/>
       <About/>
