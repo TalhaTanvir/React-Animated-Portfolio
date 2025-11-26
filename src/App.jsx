@@ -8,7 +8,7 @@ import Experience from './sections/Experience'
 import Testimonials from './sections/Testimonials'
 import Contact from './sections/Contact'
 import Footer from './sections/Footer';
-import ParticlesBackground from './components/ParticlesBackground'
+// import ParticlesBackground from './components/ParticlesBackground'
 import CustomCursor from './components/CustomCursor'
 
 
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className='relative gradient text-white'>
       <CustomCursor/>
-      <ParticlesBackground/>
+      {/* <ParticlesBackground/> */}
 
       <Navbar/>
       <Home/>
