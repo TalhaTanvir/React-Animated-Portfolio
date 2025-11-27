@@ -27,7 +27,7 @@ function Home() {
 
     return () => clearTimeout(timeout);
 
-  })
+  }, [subIndex , index , deleting , roles])
 
 
 
@@ -48,7 +48,13 @@ function Home() {
       <div className='relative z-10 h-full w-full max-w-7xl max-auto px-4 grid grid-cols-1 lg:grid-cols-2'>
         <div>
           <div>
-            <motion.div>
+            <motion.div
+            className='mb-3 text-xl sm:text-2xl'
+            >
+
+              <span>
+                {roles[index].substring(0,subIndex)}
+              </span>
 
             </motion.div>
           </div>
