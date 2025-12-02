@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Home from './sections/Home'
 import About from './sections/About'
@@ -10,10 +10,15 @@ import Contact from './sections/Contact'
 import Footer from './sections/Footer';
 // import ParticlesBackground from './components/ParticlesBackground'
 import CustomCursor from './components/CustomCursor'
+import IntroAnimation from './components/IntroAnimation'
 
 
 function App() {
+  const [introDone , setIntroDone] = useState(false)
   return (
+    <>
+    {!introDone && <IntroAnimation onFinish={()=> setIntroDone(true)}/>}
+      {introDone && (
     <div className='relative gradient text-white'>
       <CustomCursor/>
       {/* <ParticlesBackground/> */}
@@ -29,6 +34,9 @@ function App() {
       <Footer/>
 
     </div>
+
+      )}
+    </>
   )
 }
 
