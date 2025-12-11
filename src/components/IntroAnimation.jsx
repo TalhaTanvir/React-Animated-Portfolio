@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useMemo, useState } from 'react'
 
-function IntroAnimation() {
+function IntroAnimation({onFinish}) {
 
   const greetings = useMemo(()=> [
     "Hello", "नमस्ते", "Hola", "Bonjour",
@@ -14,10 +14,10 @@ function IntroAnimation() {
 
   useEffect(()=> {
     if(index < greetings.length-1){
-      const id = setInterval (()=> setIndex((i) => i+1), 180)
+      const id = setInterval (()=> setIndex((i) => i+1), 180);
       return () => clearInterval(id);
     }else{
-      const t = setTimeout(() => setVisible(false), 3000);
+      const t = setTimeout(() => setVisible(false), 300);
       return () => clearTimeout(t)
     }
   },[index , greetings.length])
