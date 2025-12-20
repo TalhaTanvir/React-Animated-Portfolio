@@ -13,18 +13,18 @@ const socials = [
 ]
 
 const glowVarients = {
-  initial : {scale:1 , y:0, filter:"drop-shadow(0 0 0 rgba(0,0,0))"},
+  initial : {scale:1 , y:0, filter:"drop-shadow(0 0 0 rgba(0,0,0,0))"},
   hover : {
     scale: 1.2 , y: -3,
     filter: "drop-shadow(0 0 8px rgba(13,88,204,0.9)) drop-shadow(0 0 18px rgba(16,185,129,0.8))",
-    transition: {type: "spring", stifness:300, damping:15}
+    transition: {type: "spring", stiffness:300, damping:15}
   },
   tap: {scale:0.95, y:0, transition:{duration:0.88}}
 }
 
 
 function Home() {
-  const roles = useMemo(() => ["Web Developer", "Frontend Developer", "MERN Stack Developer"])
+  const roles = useMemo(() => ["Web Developer", "Frontend Developer", "MERN Stack Developer"],[])
 
   const  [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
@@ -96,7 +96,7 @@ function Home() {
             animate={{opacity:1 , y:0}}
             transition={{duration:0.8 , delay:0.4}}
             >
-              I turn complex ideas into seamless, high-impact web experiences - building modern, scalable, and lighting-fast applications that make a difference.
+              I turn complex ideas into seamless, high-impact web experiences - building modern, scalable, and lightning-fast applications that make a difference.
             </motion.p>
 
             <motion.div className='mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6'
