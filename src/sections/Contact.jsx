@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ParticlesBackground from '../components/ParticlesBackground';
 import {motion} from 'framer-motion'
 import Astra from '../assets/Astra.png'
+
+
+const FORM_ID = import.meta.env.VITE_FORMSPREE_FORM_ID;
+
+
 
 function Contact() {
 
@@ -9,8 +14,8 @@ function Contact() {
     name : "",
     email : "",
     service : "",
-    budget : "",
-    idea : "",
+    // budget : "",
+    message : "",
   });
 
   const [errors , setErrors] = useState({});
@@ -18,17 +23,17 @@ function Contact() {
  
   const handleChange = (e) => {
     const {name, value} = e.target;
-    if(name === "budget" && value && !/^\d+$/.test(value)) return;
+    // if(name === "budget" && value && !/^\d+$/.test(value)) return;
     setFormData((p) => ({...p , [name] : value}));
     if(errors[name]) setErrors((p) => ({...p , [name] : ""}));
   }
   
   const validateForm = () => {
-    const required = ["name" , "email" , "service" , "idea"];
+    const required = ["name" , "email" , "service" , "message"];
     const newErrors = {};
     required.forEach((f) => !formData[f].trim() && (newErrors[f] = "Fill this field"));
-    if(formData.service !== "other" && !formData.budget.trim())
-      newErrors.budget = "Fill this filed";
+    // if(formData.service !== "other" && !formData.budget.trim())
+    //   newErrors.budget = "Fill this filed";
     setErrors(newErrors);
     return !Object.keys(newErrors).length;
   }
@@ -39,13 +44,52 @@ function Contact() {
     setStatus("sending");
 
     try {
+      const res = await fetch(
+        `https://formspree.io/f/${FORM_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            service: formData.service,
+            // budget: formData.budget,
+            message: formData.message,
+          })
+        }
+
+      );
+
+      if (!res.ok) throw new Error("Form submission failed")
+
+        setStatus("success");
+        setFormData({
+          name: "",
+        email: "",
+        service: "",
+        // budget: "",
+        message: "",
+        })
+
+
 
     } catch (err) {
-      console.error()
-
+      console.error(err);
+      setStatus("error");
     }
 
   }
+
+  useEffect(() => {
+    if (status) {
+      const timer = setTimeout(() => setStatus(""), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
   return (
     <section id='contact' className='w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10'>
     <ParticlesBackground/>
@@ -110,19 +154,20 @@ function Contact() {
                 <option value="" disabled>
                   Something in mind?
                 </option>
-                <option value="Front-end Development">
+                <option value="Front-end Development" className='text-black'>
                   Front-end Development
                 </option>
-                <option value="MERN Stack Development">
+                <option value="MERN Stack Development" className='text-black'>
                   MERN Stack Development
                 </option>
-                <option value="others">
+                <option value="others" className='text-black'>
                   Others
                 </option>
               </select>
               {errors.service && <p className='text-red-500 text-xs'>{errors.service}</p>}
             </div>
-            {formData.service && formData.service !== "other" && (
+
+            {/* {formData.service && formData.service !== "other" && (
               <div className='flex flex-col'>
                 <label className='mb-1'>Budget <span className='text-red-500'>*</span></label>
                 <input type="text"
@@ -134,7 +179,39 @@ function Contact() {
                 />
                 {errors.budget && <p className='text-red-500 text-xs'>{errors.budget}</p>}
               </div>
+            )} */}
+
+            <div className='flex flex-col'>
+              <label className='mb-1 '>Message<span className='text-red-500'>*</span></label>
+              <textarea name="message"
+              rows={5}
+              placeholder='Enter Your Message'
+              value={formData.message}
+              onChange={handleChange}
+              className={`p-3 rounded-md bg-white/10 border ${errors.message ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500`}
+              >
+
+              </textarea>
+              {errors.message && <p className='text-red-500 text-xs'>{errors.message}</p>}
+            </div>
+
+            {status && (
+              <p className={`text-sm ${status === "success" ? "text-green-400" : status === "error" ? "text-red-400" : "text-yellow-400"}`}>
+                {status === "sending" ? "sending..." : status === "success" ? "Message sent successfully ✅" : "Something went wrong ❌"}
+              </p>
             )}
+
+            <motion.button className='bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white py-3 rounded-md font-semibold transition'
+            whileHover={{scale: 1.05}}
+            whileTap={{scale:0.95}}
+            disabled={status === "sending"}
+            type="submit"
+            >
+              {status === "sending" ? "sending..." : "Send Message"}
+
+            </motion.button>
+
+            
           </form>
         </motion.div>
     </div>

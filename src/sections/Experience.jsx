@@ -5,22 +5,22 @@ import React, { useEffect, useState, useRef, useMemo } from 'react'
 
 const experiences = [
   {
-    role : "Web Developer",
-    company : "Brain Mentors",
-    duration : "2022",
-    description : "Build high-performance apps, integrated AI features, improved engagement by 10%.",
+    role : "Web Developer Intern",
+    company : "Enigmatix",
+    duration : "2024 (Feb-May)",
+    description : "Developed responsive web pages and helped improve website performance and user interface design.",
   },
   {
     role : "Web Developer Intern",
-    company : "Mobisoft Technologies",
-    duration : "2022 - 2023",
-    description : "Gained hands-on web development experiences.",
+    company : "HiSkyTech",
+    duration : "2024 (Juy-Dec)",
+    description : "Assisted in building web applications, learning frontend development with React, and creating interactive UI components.",
   },
   {
     role : "Web Developer",
-    company : "HCL Techonologies",
-    duration : "2022 - 2025",
-    description : "Build frontend of GenAI-powered PV intake Apps with Next.js & TS for US client.",
+    company : "HiSkyTech",
+    duration : "2025(Jan-Dec)",
+    description : "Built frontend of web applications using Next.js and TypeScript, implemented responsive layouts, and worked on integrating frontend with backend APIs.",
   },
 ];
 
