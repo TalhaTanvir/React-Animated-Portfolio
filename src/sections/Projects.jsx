@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useMemo, useRef} from 'react'
-import img1 from '../assets/img1.JPG'
-import img2 from '../assets/img2.JPG'
-import img3 from '../assets/img3.JPG'
+import img1 from '../assets/img1.png'
+import img2 from '../assets/img2.png'
+import img3 from '../assets/img3.png'
 import photo1 from '../assets/photo1.JPG'
 import photo2 from '../assets/photo2.PNG'
 import photo3 from '../assets/photo3.png'
@@ -32,9 +32,11 @@ function Projects() {
 
   const projects = useMemo(() => [
     {
-      title : "nk studio",
+      // title : "nk studio",
+      title : "Prescripto",
       link : "https://www.nk.studio/",
       bgColor : "#0d4d3d",
+      // image : isMobile ? photo1 : img1
       image : isMobile ? photo1 : img1
     },
     {
@@ -147,7 +149,7 @@ function Projects() {
           isMobile ? "bottom-20" : "bottom-10"
         }`}>
           <a href={activeProject?.link}
-          targrt="_blank"
+          target="_blank"
           rel="noopener noreferrer"
           className='inline-block px-6 py-3 font-semibold rounded-lg bg-white text-black hover:bg-gray-200 transition-all'
           aria-label={`View ${activeProject?.title}`}
