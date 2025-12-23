@@ -2,7 +2,7 @@ import React,{useState, useEffect, useMemo, useRef} from 'react'
 import img1 from '../assets/img1.png'
 import img2 from '../assets/img2.png'
 import img3 from '../assets/img3.png'
-import photo1 from '../assets/photo1.JPG'
+import photo1 from '../assets/photo1.PNG'
 import photo2 from '../assets/photo2.PNG'
 import photo3 from '../assets/photo3.png'
 import { AnimatePresence, useMotionValueEvent, useScroll } from 'framer-motion'
@@ -33,22 +33,22 @@ function Projects() {
   const projects = useMemo(() => [
     {
       // title : "nk studio",
-      title : "Prescripto",
+      title : "Real Estate",
       link : "https://www.nk.studio/",
-      bgColor : "#0d4d3d",
+      bgColor : "#2E2929",
       // image : isMobile ? photo1 : img1
       image : isMobile ? photo1 : img1
     },
     {
-      title : "Gamily",
-      link : "https://www.gamilyapp.studio/",
+      title : "Prescripto",
+      link : "https://prescripto-delta-seven.vercel.app/",
       bgColor : "#3884d3",
       image : isMobile ? photo2 : img2
     },
     {
-      title : "Hungry Tiger",
-      link : "https://www.eathungrytiger.studio/",
-      bgColor : "#dc9317",
+      title : "Tomato",
+      link : "https://tomato-9fowrnrmx-talha-tanvirs-projects.vercel.app/",
+      bgColor : "#DB5716",
       image : isMobile ? photo3 : img3
     },
   ],[isMobile]) //re-run only when `ismobile` changes
